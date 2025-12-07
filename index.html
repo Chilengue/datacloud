@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Cloud - Soluções em Análise de Dados</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            line-height: 1.8;
+            color: #e0e7ff;
+            background: #020617;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(59, 130, 246, 0.2);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #3b82f6;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            padding: 180px 2rem 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            color: #94a3b8;
+            animation: fadeInUp 1.2s;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s;
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+            animation: fadeInUp 1.4s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.5);
+        }
+
+        .section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(51, 65, 85, 0.6) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2);
+        }
+
+        .about-card h3 {
+            color: #3b82f6;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(51, 65, 85, 0.7) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #3b82f6;
+            box-shadow: 0 25px 70px rgba(59, 130, 246, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            color: #3b82f6;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: #cbd5e1;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-features {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .service-features li {
+            color: #94a3b8;
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        .solutions-section {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%);
+            padding: 100px 2rem;
+        }
+
+        .architecture-card {
+            background: linear-gradient(135deg, rgba(51, 65, 85, 0.6) 0%, rgba(71, 85, 105, 0.4) 100%);
+            padding: 3.5rem;
+            border-radius: 25px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            margin-top: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .architecture-card h3 {
+            color: #3b82f6;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .architecture-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .architecture-point {
+            padding: 1.5rem;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 15px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .architecture-point h4 {
+            color: #60a5fa;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 100px 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 45px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.4s;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.3);
+            margin-top: 2rem;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.08) translateY(-3px);
+            box-shadow: 0 20px 60px rgba(37, 211, 102, 0.5);
+        }
+
+        footer {
+            background: #0f172a;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        footer p {
+            color: #64748b;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .services-grid, .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card, .about-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">Data Cloud</div>
+            <ul class="nav-menu">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre Nós</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#solucoes">Soluções</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Transforme Dados em Inteligência de Negócio</h1>
+            <p>Soluções completas em Analytics, Cloud Computing e Business Intelligence</p>
+            <a href="#contato" class="cta-button">Comece Agora</a>
+        </div>
+    </section>
+
+    <section id="sobre" class="section">
+        <h2 class="section-title">Sobre Nós</h2>
+        <p class="section-subtitle">Somos especialistas em transformar dados complexos em insights acionáveis que impulsionam o sucesso do seu negócio</p>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>🎯 Nossa Missão</h3>
+                <p>Democratizar o acesso a soluções avançadas de análise de dados, capacitando empresas de todos os portes a tomar decisões estratégicas baseadas em dados concretos. Oferecemos tecnologia de ponta com suporte personalizado para garantir o máximo retorno sobre o investimento.</p>
+            </div>
+            <div class="about-card">
+                <h3>👁️ Nossa Visão</h3>
+                <p>Ser a referência líder em Moçambique e região em soluções de Data Analytics e Cloud Computing, reconhecida pela excelência técnica, inovação constante e resultados mensuráveis. Queremos ser parceiros estratégicos no crescimento dos nossos clientes.</p>
+            </div>
+            <div class="about-card">
+                <h3>💎 Nossos Valores</h3>
+                <p>Excelência técnica, transparência total, compromisso com resultados, inovação contínua e atendimento humanizado. Acreditamos que o sucesso dos nossos clientes é o nosso sucesso, e trabalhamos incansavelmente para superar expectativas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="section">
+        <h2 class="section-title">Nossos Serviços</h2>
+        <p class="section-subtitle">Soluções completas e integradas para todas as suas necessidades de dados e analytics</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">📊</span>
+                <h3>Power BI</h3>
+                <p>Crie dashboards interativos e relatórios dinâmicos com a ferramenta líder em Business Intelligence da Microsoft. Visualize seus dados em tempo real com gráficos intuitivos e painéis personalizados.</p>
+                <ul class="service-features">
+                    <li>Dashboards interativos e responsivos</li>
+                    <li>Relatórios automatizados personalizados</li>
+                    <li>Integração com múltiplas fontes de dados</li>
+                    <li>Análises preditivas com IA</li>
+                    <li>Compartilhamento seguro na nuvem</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">📈</span>
+                <h3>Tableau</h3>
+                <p>Plataforma premium de visualização de dados que transforma números complexos em histórias visuais impactantes. Perfeito para análises exploratórias e apresentações executivas de alto nível.</p>
+                <ul class="service-features">
+                    <li>Visualizações avançadas e elegantes</li>
+                    <li>Análise em tempo real</li>
+                    <li>Storytelling com dados</li>
+                    <li>Colaboração entre equipes</li>
+                    <li>Publicação web e mobile</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">📑</span>
+                <h3>Excel Avançado</h3>
+                <p>Domine a ferramenta mais utilizada no mundo corporativo. Oferecemos soluções desde dashboards automatizados até modelagem financeira complexa e análises estatísticas avançadas.</p>
+                <ul class="service-features">
+                    <li>Dashboards automatizados com VBA</li>
+                    <li>Tabelas dinâmicas avançadas</li>
+                    <li>Modelagem de dados com Power Query</li>
+                    <li>Macros e automações</li>
+                    <li>Análises financeiras e estatísticas</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🗄️</span>
+                <h3>SQL & Bancos de Dados</h3>
+                <p>Gestão completa de bases de dados relacionais (SQL Server, PostgreSQL, MySQL). Desde a modelagem até otimização de queries e administração de servidores para máximo desempenho.</p>
+                <ul class="service-features">
+                    <li>Design e modelagem de banco de dados</li>
+                    <li>Otimização de queries e performance</li>
+                    <li>Stored procedures e triggers</li>
+                    <li>Backup e recuperação de dados</li>
+                    <li>Segurança e controle de acesso</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🔥</span>
+                <h3>NoSQL & Big Data</h3>
+                <p>Soluções para grandes volumes de dados não estruturados com MongoDB, Cassandra, Redis e Elasticsearch. Ideal para aplicações modernas que exigem escalabilidade e flexibilidade.</p>
+                <ul class="service-features">
+                    <li>MongoDB para dados flexíveis</li>
+                    <li>Redis para cache e performance</li>
+                    <li>Elasticsearch para buscas avançadas</li>
+                    <li>Processamento de Big Data</li>
+                    <li>Arquitetura distribuída</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">☁️</span>
+                <h3>Cloud Computing</h3>
+                <p>Migração e gestão completa de infraestrutura em nuvem (Azure, AWS, Google Cloud). Reduza custos, aumente segurança e tenha escalabilidade infinita para seus dados e aplicações.</p>
+                <ul class="service-features">
+                    <li>Migração para nuvem (Azure, AWS, GCP)</li>
+                    <li>Arquitetura serverless</li>
+                    <li>Data Lakes e Data Warehouses</li>
+                    <li>Backup automático e disaster recovery</li>
+                    <li>Monitoramento 24/7</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🏢</span>
+                <h3>Data Warehouse</h3>
+                <p>Centralize todos os dados da sua empresa em um repositório otimizado para análise. Construímos Data Warehouses empresariais com modelagem dimensional (Star Schema, Snowflake) para consultas ultra-rápidas.</p>
+                <ul class="service-features">
+                    <li>Modelagem dimensional (Kimball/Inmon)</li>
+                    <li>OLAP Cubes para análises multidimensionais</li>
+                    <li>Histórico completo de dados (SCD Type 2)</li>
+                    <li>Performance otimizada com indexação</li>
+                    <li>Integração com todas as ferramentas BI</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🌊</span>
+                <h3>Data Lake</h3>
+                <p>Armazene dados estruturados, semi-estruturados e não estruturados em escala massiva. Perfeito para Big Data, Machine Learning e análises avançadas com Azure Data Lake, AWS S3 ou Google Cloud Storage.</p>
+                <ul class="service-features">
+                    <li>Armazenamento ilimitado e econômico</li>
+                    <li>Suporte a todos os formatos (JSON, Parquet, CSV, imagens)</li>
+                    <li>Processamento distribuído com Spark/Databricks</li>
+                    <li>Data Lake Zones (Raw, Curated, Analytics)</li>
+                    <li>Machine Learning e AI integrados</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🤖</span>
+                <h3>ETL & Integração de Dados</h3>
+                <p>Conecte todas as suas fontes de dados em um único ecossistema. Automatize a extração, transformação e carga de dados com ferramentas como Azure Data Factory, Talend e SSIS.</p>
+                <ul class="service-features">
+                    <li>Pipelines de dados automatizados</li>
+                    <li>Integração de múltiplas fontes</li>
+                    <li>Limpeza e validação de dados</li>
+                    <li>Agendamento e monitoramento</li>
+                    <li>Tratamento de erros robusto</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🎓</span>
+                <h3>Consultoria & Treinamento</h3>
+                <p>Capacite sua equipe com nossos programas de treinamento personalizados. Oferecemos consultoria estratégica para definir roadmaps de dados e implementar melhores práticas.</p>
+                <ul class="service-features">
+                    <li>Workshops práticos e hands-on</li>
+                    <li>Consultoria estratégica de dados</li>
+                    <li>Auditoria de infraestrutura</li>
+                    <li>Definição de KPIs e métricas</li>
+                    <li>Suporte técnico contínuo</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🔐</span>
+                <h3>Data Governance & Segurança</h3>
+                <p>Proteja seus dados mais valiosos com políticas de governança robustas, compliance com GDPR e frameworks de segurança enterprise-grade.</p>
+                <ul class="service-features">
+                    <li>Políticas de acesso e segurança</li>
+                    <li>Compliance e auditoria</li>
+                    <li>Criptografia de dados</li>
+                    <li>Monitoramento de anomalias</li>
+                    <li>Recuperação de desastres</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="solucoes" class="solutions-section">
+        <div class="section">
+            <h2 class="section-title">Arquitetura de Soluções</h2>
+            <p class="section-subtitle">Construímos arquiteturas de dados robustas, escaláveis e sob medida para o seu negócio</p>
+            
+            <div class="architecture-card">
+                <h3>🏗️ Arquitetura Completa de Dados</h3>
+                <p style="color: #cbd5e1; margin-bottom: 2rem;">Projetamos e implementamos arquiteturas end-to-end que cobrem todo o ciclo de vida dos dados, desde a ingestão até a visualização, garantindo performance, segurança e escalabilidade.</p>
+                
+                <div class="architecture-points">
+                    <div class="architecture-point">
+                        <h4>📥 Camada de Ingestão</h4>
+                        <p style="color: #94a3b8;">Coleta automatizada de dados de múltiplas fontes: APIs, bancos de dados, arquivos, streaming, IoT e sistemas legados.</p>
+                    </div>
+                    <div class="architecture-point">
+                        <h4>🔄 Camada de Processamento</h4>
+                        <p style="color: #94a3b8;">ETL/ELT com transformações complexas, limpeza, validação e enriquecimento de dados em batch ou real-time.</p>
+                    </div>
+                    <div class="architecture-point">
+                        <h4>🗄️ Camada de Armazenamento</h4>
+                        <p style="color: #94a3b8;">Data Lakes e Data Warehouses otimizados com particionamento inteligente, indexação e compressão para consultas rápidas.</p>
+                    </div>
+                    <div class="architecture-point">
+                        <h4>📊 Camada de Analytics</h4>
+                        <p style="color: #94a3b8;">Ferramentas de BI, dashboards interativos, análises ad-hoc e machine learning integrados para insights profundos.</p>
+                    </div>
+                    <div class="architecture-point">
+                        <h4>🔒 Segurança & Governança</h4>
+                        <p style="color: #94a3b8;">Controle de acesso granular, auditoria completa, criptografia end-to-end e compliance com regulamentações internacionais.</p>
+                    </div>
+                    <div class="architecture-point">
+                        <h4>📈 Monitoramento & DevOps</h4>
+                        <p style="color: #94a3b8;">Observabilidade completa com alertas proativos, CI/CD pipelines, testes automatizados e documentação viva.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="architecture-card" style="margin-top: 2rem;">
+                <h3>🚀 Benefícios da Nossa Arquitetura</h3>
+                <div class="architecture-points">
+                    <div class="architecture-point">
+                        <h4>⚡ Alta Performance</h4>
+                        <p style="color: #94a3b8;">Queries otimizadas que respondem em milissegundos, mesmo com terabytes de dados.</p>
+                    </div>
+                    <div class="architecture-point">
+                        <h4>📊 Escalabilidade Infinita</h4>
+                        <p style="color: #94a3b8;">Cresça sem limites com arquitetura cloud-native que escala automaticamente.</p>
+                    </div>
+                    <div class="architecture-point">
+                        <h4>💰 Redução de Custos</h4>
+                        <p style="color: #94a3b8;">Otimização de recursos que pode reduzir seus custos de infraestrutura em até 60%.</p>
+                    </div>
+                    <div class="architecture-point">
+                        <h4>🔄 Automação Total</h4>
+                        <p style="color: #94a3b8;">Processos automatizados que economizam centenas de horas de trabalho manual.</p>
+                    </div>
+                    <div class="architecture-point">
+                        <h4>🛡️ Confiabilidade 99.9%</h4>
+                        <p style="color: #94a3b8;">Sistemas resilientes com redundância e recuperação automática de falhas.</p>
+                    </div>
+                    <div class="architecture-point">
+                        <h4>🎯 Insights em Tempo Real</h4>
+                        <p style="color: #94a3b8;">Tome decisões baseadas em dados atualizados a cada segundo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="contact-section">
+        <div class="contact-content">
+            <h2 class="section-title">Entre em Contato</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 1rem; color: #cbd5e1;">Pronto para transformar seus dados em resultados?</p>
+            <p style="font-size: 1.1rem; color: #94a3b8; max-width: 700px; margin: 0 auto;">Nossa equipe está preparada para atender suas necessidades e criar a solução perfeita para o seu negócio</p>
+            <a href="https://wa.me/258876164747" class="whatsapp-btn" target="_blank">
+                <span style="font-size: 1.8rem;">💬</span>
+                WhatsApp: +258 87 616 4747
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #94a3b8;">&copy; 2024 Node Site Data Cloud</p>
+        <p style="color: #64748b;">Data Analytics | Business Intelligence | Cloud Solutions | SQL & NoSQL | Tableau | Power BI</p>
+        <p style="margin-top: 1rem; color: #475569;">Transformando dados em inteligência de negócio</p>
+    </footer>
+</body>
+</html>
