@@ -3,694 +3,793 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Cloud - Soluções em Análise de Dados</title>
+    <title>Data Cloud | Transforme Dados em Inteligência de Negócio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #06b6d4;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --dark: #1e293b;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            line-height: 1.8;
-            color: #e0e7ff;
-            background: #020617;
-            overflow-x: hidden;
+            font-family: 'Roboto', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: var(--light);
         }
-
-        .header {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
-            backdrop-filter: blur(10px);
-            padding: 1.2rem 0;
+        
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 30px rgba(59, 130, 246, 0.2);
-            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
         }
-
+        
         .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1.2rem 0;
         }
-
+        
         .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
         }
-
-        .nav-menu {
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
             display: flex;
             list-style: none;
-            gap: 2.5rem;
         }
-
-        .nav-menu a {
-            color: #cbd5e1;
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 10rem 0 6rem;
+            margin-top: 70px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s;
-            position: relative;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
         }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            transition: width 0.3s;
+        
+        .btn:hover {
+            background-color: #0891b2;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
         }
-
-        .nav-menu a:hover {
-            color: #3b82f6;
+        
+        .btn-primary {
+            background-color: var(--primary);
         }
-
-        .nav-menu a:hover::after {
-            width: 100%;
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
         }
-
-        .hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-            padding: 180px 2rem 120px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        
+        /* Sections */
+        section {
+            padding: 5rem 0;
         }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s;
-            font-weight: 900;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2.5rem;
-            color: #94a3b8;
-            animation: fadeInUp 1.2s;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 18px 50px;
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.4s;
-            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
-            animation: fadeInUp 1.4s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.5);
-        }
-
-        .section {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 100px 2rem;
-        }
-
+        
         .section-title {
             text-align: center;
-            font-size: 3rem;
+            margin-bottom: 3.5rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 800;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #94a3b8;
-            font-size: 1.2rem;
-            margin-bottom: 4rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .about-card {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(51, 65, 85, 0.6) 100%);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            transition: all 0.4s;
-            backdrop-filter: blur(10px);
-        }
-
-        .about-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(59, 130, 246, 0.5);
-            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2);
-        }
-
-        .about-card h3 {
-            color: #3b82f6;
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
-            font-weight: 700;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(51, 65, 85, 0.7) 100%);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            transition: all 0.4s;
             position: relative;
-            overflow: hidden;
+            display: inline-block;
         }
-
-        .service-card::before {
+        
+        .section-title h2:after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.4s;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
-
-        .service-card:hover::before {
-            opacity: 1;
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
         }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: #3b82f6;
-            box-shadow: 0 25px 70px rgba(59, 130, 246, 0.3);
+        
+        .mission-vision-values {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
-
-        .service-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            display: block;
+        
+        .mission-vision-values:hover {
+            transform: translateY(-5px);
         }
-
-        .service-card h3 {
-            color: #3b82f6;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            font-weight: 700;
-            position: relative;
-            z-index: 1;
+        
+        .mission-vision-values h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
         }
-
-        .service-card p {
-            color: #cbd5e1;
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
-        }
-
-        .service-features {
+        
+        .values-list {
+            list-style: none;
             margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(59, 130, 246, 0.2);
         }
-
-        .service-features li {
-            color: #94a3b8;
+        
+        .values-list li {
             margin-bottom: 0.8rem;
             padding-left: 1.5rem;
             position: relative;
         }
-
-        .service-features li::before {
+        
+        .values-list li:before {
             content: '✓';
             position: absolute;
             left: 0;
-            color: #3b82f6;
+            color: var(--accent);
             font-weight: bold;
         }
-
-        .solutions-section {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%);
-            padding: 100px 2rem;
+        
+        /* Services Section */
+        .services {
+            background-color: #f1f5f9;
         }
-
-        .architecture-card {
-            background: linear-gradient(135deg, rgba(51, 65, 85, 0.6) 0%, rgba(71, 85, 105, 0.4) 100%);
-            padding: 3.5rem;
-            border-radius: 25px;
-            border: 2px solid rgba(59, 130, 246, 0.3);
-            margin-top: 3rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .architecture-card h3 {
-            color: #3b82f6;
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-            font-weight: 700;
-        }
-
-        .architecture-points {
+        
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
         }
-
-        .architecture-point {
-            padding: 1.5rem;
-            background: rgba(30, 41, 59, 0.5);
-            border-radius: 15px;
-            border-left: 4px solid #3b82f6;
-        }
-
-        .architecture-point h4 {
-            color: #60a5fa;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .contact-section {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            padding: 100px 2rem;
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
-
-        .contact-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+        
+        .service-card:hover {
+            transform: translateY(-10px);
         }
-
-        .contact-content {
-            position: relative;
-            z-index: 1;
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
         }
-
-        .whatsapp-btn {
+        
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        /* Architecture Section */
+        .architecture-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .step {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .step:hover {
+            transform: scale(1.05);
+        }
+        
+        .step h4 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .benefit {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+        }
+        
+        .benefit-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: var(--accent);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact .section-title h2 {
+            color: white;
+        }
+        
+        .contact .section-title h2:after {
+            background-color: var(--accent);
+        }
+        
+        .contact-info {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 15px;
-            padding: 20px 45px;
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-            color: #fff;
-            text-decoration: none;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.8rem 1.5rem;
             border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: all 0.4s;
-            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.3);
-            margin-top: 2rem;
+            transition: var(--transition);
         }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.08) translateY(-3px);
-            box-shadow: 0 20px 60px rgba(37, 211, 102, 0.5);
+        
+        .contact-info a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
         }
-
+        
+        .contact-info i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
         footer {
-            background: #0f172a;
+            background-color: var(--secondary);
+            color: white;
+            padding: 3rem 0;
             text-align: center;
-            padding: 3rem 2rem;
-            border-top: 1px solid rgba(59, 130, 246, 0.2);
         }
-
-        footer p {
-            color: #64748b;
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
         }
-
-        @media (max-width: 768px) {
+        
+        .footer-tagline {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        .footer-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tag {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            width: 100%;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
             .hero h1 {
                 font-size: 2.5rem;
             }
-
-            .hero p {
-                font-size: 1.1rem;
+            
+            .nav-links {
+                display: none;
             }
-
-            .nav-menu {
-                gap: 1rem;
-                font-size: 0.9rem;
+            
+            .mobile-menu-btn {
+                display: block;
             }
-
-            .section-title {
-                font-size: 2.2rem;
+            
+            .mobile-nav {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: var(--shadow);
+                padding: 1rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: var(--transition);
+                z-index: 999;
             }
-
-            .services-grid, .about-grid {
+            
+            .mobile-nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .mobile-nav li {
+                margin: 0;
+                padding: 0.8rem 0;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .mobile-nav a {
+                display: block;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .benefits-grid {
                 grid-template-columns: 1fr;
             }
-
-            .service-card, .about-card {
-                padding: 2rem;
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .architecture-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step {
+                max-width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav-container">
-            <div class="logo">Data Cloud</div>
-            <ul class="nav-menu">
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#sobre">Sobre Nós</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#solucoes">Soluções</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1>Transforme Dados em Inteligência de Negócio</h1>
-            <p>Soluções completas em Analytics, Cloud Computing e Business Intelligence</p>
-            <a href="#contato" class="cta-button">Comece Agora</a>
-        </div>
-    </section>
-
-    <section id="sobre" class="section">
-        <h2 class="section-title">Sobre Nós</h2>
-        <p class="section-subtitle">Somos especialistas em transformar dados complexos em insights acionáveis que impulsionam o sucesso do seu negócio</p>
-        <div class="about-grid">
-            <div class="about-card">
-                <h3>🎯 Nossa Missão</h3>
-                <p>Democratizar o acesso a soluções avançadas de análise de dados, capacitando empresas de todos os portes a tomar decisões estratégicas baseadas em dados concretos. Oferecemos tecnologia de ponta com suporte personalizado para garantir o máximo retorno sobre o investimento.</p>
-            </div>
-            <div class="about-card">
-                <h3>👁️ Nossa Visão</h3>
-                <p>Ser a referência líder em Moçambique e região em soluções de Data Analytics e Cloud Computing, reconhecida pela excelência técnica, inovação constante e resultados mensuráveis. Queremos ser parceiros estratégicos no crescimento dos nossos clientes.</p>
-            </div>
-            <div class="about-card">
-                <h3>💎 Nossos Valores</h3>
-                <p>Excelência técnica, transparência total, compromisso com resultados, inovação contínua e atendimento humanizado. Acreditamos que o sucesso dos nossos clientes é o nosso sucesso, e trabalhamos incansavelmente para superar expectativas.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="servicos" class="section">
-        <h2 class="section-title">Nossos Serviços</h2>
-        <p class="section-subtitle">Soluções completas e integradas para todas as suas necessidades de dados e analytics</p>
-        <div class="services-grid">
-            <div class="service-card">
-                <span class="service-icon">📊</span>
-                <h3>Power BI</h3>
-                <p>Crie dashboards interativos e relatórios dinâmicos com a ferramenta líder em Business Intelligence da Microsoft. Visualize seus dados em tempo real com gráficos intuitivos e painéis personalizados.</p>
-                <ul class="service-features">
-                    <li>Dashboards interativos e responsivos</li>
-                    <li>Relatórios automatizados personalizados</li>
-                    <li>Integração com múltiplas fontes de dados</li>
-                    <li>Análises preditivas com IA</li>
-                    <li>Compartilhamento seguro na nuvem</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">📈</span>
-                <h3>Tableau</h3>
-                <p>Plataforma premium de visualização de dados que transforma números complexos em histórias visuais impactantes. Perfeito para análises exploratórias e apresentações executivas de alto nível.</p>
-                <ul class="service-features">
-                    <li>Visualizações avançadas e elegantes</li>
-                    <li>Análise em tempo real</li>
-                    <li>Storytelling com dados</li>
-                    <li>Colaboração entre equipes</li>
-                    <li>Publicação web e mobile</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">📑</span>
-                <h3>Excel Avançado</h3>
-                <p>Domine a ferramenta mais utilizada no mundo corporativo. Oferecemos soluções desde dashboards automatizados até modelagem financeira complexa e análises estatísticas avançadas.</p>
-                <ul class="service-features">
-                    <li>Dashboards automatizados com VBA</li>
-                    <li>Tabelas dinâmicas avançadas</li>
-                    <li>Modelagem de dados com Power Query</li>
-                    <li>Macros e automações</li>
-                    <li>Análises financeiras e estatísticas</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🗄️</span>
-                <h3>SQL & Bancos de Dados</h3>
-                <p>Gestão completa de bases de dados relacionais (SQL Server, PostgreSQL, MySQL). Desde a modelagem até otimização de queries e administração de servidores para máximo desempenho.</p>
-                <ul class="service-features">
-                    <li>Design e modelagem de banco de dados</li>
-                    <li>Otimização de queries e performance</li>
-                    <li>Stored procedures e triggers</li>
-                    <li>Backup e recuperação de dados</li>
-                    <li>Segurança e controle de acesso</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🔥</span>
-                <h3>NoSQL & Big Data</h3>
-                <p>Soluções para grandes volumes de dados não estruturados com MongoDB, Cassandra, Redis e Elasticsearch. Ideal para aplicações modernas que exigem escalabilidade e flexibilidade.</p>
-                <ul class="service-features">
-                    <li>MongoDB para dados flexíveis</li>
-                    <li>Redis para cache e performance</li>
-                    <li>Elasticsearch para buscas avançadas</li>
-                    <li>Processamento de Big Data</li>
-                    <li>Arquitetura distribuída</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">☁️</span>
-                <h3>Cloud Computing</h3>
-                <p>Migração e gestão completa de infraestrutura em nuvem (Azure, AWS, Google Cloud). Reduza custos, aumente segurança e tenha escalabilidade infinita para seus dados e aplicações.</p>
-                <ul class="service-features">
-                    <li>Migração para nuvem (Azure, AWS, GCP)</li>
-                    <li>Arquitetura serverless</li>
-                    <li>Data Lakes e Data Warehouses</li>
-                    <li>Backup automático e disaster recovery</li>
-                    <li>Monitoramento 24/7</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🏢</span>
-                <h3>Data Warehouse</h3>
-                <p>Centralize todos os dados da sua empresa em um repositório otimizado para análise. Construímos Data Warehouses empresariais com modelagem dimensional (Star Schema, Snowflake) para consultas ultra-rápidas.</p>
-                <ul class="service-features">
-                    <li>Modelagem dimensional (Kimball/Inmon)</li>
-                    <li>OLAP Cubes para análises multidimensionais</li>
-                    <li>Histórico completo de dados (SCD Type 2)</li>
-                    <li>Performance otimizada com indexação</li>
-                    <li>Integração com todas as ferramentas BI</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🌊</span>
-                <h3>Data Lake</h3>
-                <p>Armazene dados estruturados, semi-estruturados e não estruturados em escala massiva. Perfeito para Big Data, Machine Learning e análises avançadas com Azure Data Lake, AWS S3 ou Google Cloud Storage.</p>
-                <ul class="service-features">
-                    <li>Armazenamento ilimitado e econômico</li>
-                    <li>Suporte a todos os formatos (JSON, Parquet, CSV, imagens)</li>
-                    <li>Processamento distribuído com Spark/Databricks</li>
-                    <li>Data Lake Zones (Raw, Curated, Analytics)</li>
-                    <li>Machine Learning e AI integrados</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🤖</span>
-                <h3>ETL & Integração de Dados</h3>
-                <p>Conecte todas as suas fontes de dados em um único ecossistema. Automatize a extração, transformação e carga de dados com ferramentas como Azure Data Factory, Talend e SSIS.</p>
-                <ul class="service-features">
-                    <li>Pipelines de dados automatizados</li>
-                    <li>Integração de múltiplas fontes</li>
-                    <li>Limpeza e validação de dados</li>
-                    <li>Agendamento e monitoramento</li>
-                    <li>Tratamento de erros robusto</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🎓</span>
-                <h3>Consultoria & Treinamento</h3>
-                <p>Capacite sua equipe com nossos programas de treinamento personalizados. Oferecemos consultoria estratégica para definir roadmaps de dados e implementar melhores práticas.</p>
-                <ul class="service-features">
-                    <li>Workshops práticos e hands-on</li>
-                    <li>Consultoria estratégica de dados</li>
-                    <li>Auditoria de infraestrutura</li>
-                    <li>Definição de KPIs e métricas</li>
-                    <li>Suporte técnico contínuo</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🔐</span>
-                <h3>Data Governance & Segurança</h3>
-                <p>Proteja seus dados mais valiosos com políticas de governança robustas, compliance com GDPR e frameworks de segurança enterprise-grade.</p>
-                <ul class="service-features">
-                    <li>Políticas de acesso e segurança</li>
-                    <li>Compliance e auditoria</li>
-                    <li>Criptografia de dados</li>
-                    <li>Monitoramento de anomalias</li>
-                    <li>Recuperação de desastres</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="solucoes" class="solutions-section">
-        <div class="section">
-            <h2 class="section-title">Arquitetura de Soluções</h2>
-            <p class="section-subtitle">Construímos arquiteturas de dados robustas, escaláveis e sob medida para o seu negócio</p>
-            
-            <div class="architecture-card">
-                <h3>🏗️ Arquitetura Completa de Dados</h3>
-                <p style="color: #cbd5e1; margin-bottom: 2rem;">Projetamos e implementamos arquiteturas end-to-end que cobrem todo o ciclo de vida dos dados, desde a ingestão até a visualização, garantindo performance, segurança e escalabilidade.</p>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-cloud"></i>
+                    <span>Data Cloud</span>
+                </div>
                 
-                <div class="architecture-points">
-                    <div class="architecture-point">
-                        <h4>📥 Camada de Ingestão</h4>
-                        <p style="color: #94a3b8;">Coleta automatizada de dados de múltiplas fontes: APIs, bancos de dados, arquivos, streaming, IoT e sistemas legados.</p>
-                    </div>
-                    <div class="architecture-point">
-                        <h4>🔄 Camada de Processamento</h4>
-                        <p style="color: #94a3b8;">ETL/ELT com transformações complexas, limpeza, validação e enriquecimento de dados em batch ou real-time.</p>
-                    </div>
-                    <div class="architecture-point">
-                        <h4>🗄️ Camada de Armazenamento</h4>
-                        <p style="color: #94a3b8;">Data Lakes e Data Warehouses otimizados com particionamento inteligente, indexação e compressão para consultas rápidas.</p>
-                    </div>
-                    <div class="architecture-point">
-                        <h4>📊 Camada de Analytics</h4>
-                        <p style="color: #94a3b8;">Ferramentas de BI, dashboards interativos, análises ad-hoc e machine learning integrados para insights profundos.</p>
-                    </div>
-                    <div class="architecture-point">
-                        <h4>🔒 Segurança & Governança</h4>
-                        <p style="color: #94a3b8;">Controle de acesso granular, auditoria completa, criptografia end-to-end e compliance com regulamentações internacionais.</p>
-                    </div>
-                    <div class="architecture-point">
-                        <h4>📈 Monitoramento & DevOps</h4>
-                        <p style="color: #94a3b8;">Observabilidade completa com alertas proativos, CI/CD pipelines, testes automatizados e documentação viva.</p>
-                    </div>
-                </div>
-            </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#about">Sobre Nós</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#architecture">Arquitetura</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+        
+          </header>
 
-            <div class="architecture-card" style="margin-top: 2rem;">
-                <h3>🚀 Benefícios da Nossa Arquitetura</h3>
-                <div class="architecture-points">
-                    <div class="architecture-point">
-                        <h4>⚡ Alta Performance</h4>
-                        <p style="color: #94a3b8;">Queries otimizadas que respondem em milissegundos, mesmo com terabytes de dados.</p>
-                    </div>
-                    <div class="architecture-point">
-                        <h4>📊 Escalabilidade Infinita</h4>
-                        <p style="color: #94a3b8;">Cresça sem limites com arquitetura cloud-native que escala automaticamente.</p>
-                    </div>
-                    <div class="architecture-point">
-                        <h4>💰 Redução de Custos</h4>
-                        <p style="color: #94a3b8;">Otimização de recursos que pode reduzir seus custos de infraestrutura em até 60%.</p>
-                    </div>
-                    <div class="architecture-point">
-                        <h4>🔄 Automação Total</h4>
-                        <p style="color: #94a3b8;">Processos automatizados que economizam centenas de horas de trabalho manual.</p>
-                    </div>
-                    <div class="architecture-point">
-                        <h4>🛡️ Confiabilidade 99.9%</h4>
-                        <p style="color: #94a3b8;">Sistemas resilientes com redundância e recuperação automática de falhas.</p>
-                    </div>
-                    <div class="architecture-point">
-                        <h4>🎯 Insights em Tempo Real</h4>
-                        <p style="color: #94a3b8;">Tome decisões baseadas em dados atualizados a cada segundo.</p>
-                    </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Transforme Dados em Inteligência de Negócio</h1>
+            <p>Soluções completas em Analytics, Cloud Computing e Business Intelligence para impulsionar o sucesso do seu negócio.</p>
+            <a href="#contact" class="btn btn-primary">Comece Agora</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre Nós</h2>
+                <p>Especialistas em transformar dados complexos em insights acionáveis</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="mission-vision-values">
+                    <h3>🎯 Nossa Missão</h3>
+                    <p>Democratizar o acesso a soluções avançadas de análise de dados, capacitando empresas de todos os portes a tomar decisões estratégicas baseadas em dados concretos.</p>
+                </div>
+                
+                <div class="mission-vision-values">
+                    <h3>👁️ Nossa Visão</h3>
+                    <p>Ser a referência líder em Moçambique e região em soluções de Data Analytics e Cloud Computing, reconhecida pela excelência técnica e inovação constante.</p>
+                </div>
+                
+                <div class="mission-vision-values">
+                    <h3>💎 Nossos Valores</h3>
+                    <ul class="values-list">
+                        <li>Excelência técnica</li>
+                        <li>Transparência total</li>
+                        <li>Compromisso com resultados</li>
+                        <li>Inovação contínua</li>
+                        <li>Atendimento humanizado</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contato" class="contact-section">
-        <div class="contact-content">
-            <h2 class="section-title">Entre em Contato</h2>
-            <p style="font-size: 1.3rem; margin-bottom: 1rem; color: #cbd5e1;">Pronto para transformar seus dados em resultados?</p>
-            <p style="font-size: 1.1rem; color: #94a3b8; max-width: 700px; margin: 0 auto;">Nossa equipe está preparada para atender suas necessidades e criar a solução perfeita para o seu negócio</p>
-            <a href="https://wa.me/258876164747" class="whatsapp-btn" target="_blank">
-                <span style="font-size: 1.8rem;">💬</span>
-                WhatsApp: +258 87 616 4747
-            </a>
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Serviços</h2>
+                <p>Soluções completas e integradas para todas as suas necessidades de dados e analytics</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service cards will be generated by JavaScript -->
+            </div>
         </div>
     </section>
 
+    <!-- Architecture Section -->
+    <section id="architecture">
+        <div class="container">
+            <div class="section-title">
+                <h2>Arquitetura de Soluções</h2>
+                <p>Construímos arquiteturas de dados robustas, escaláveis e sob medida para o seu negócio</p>
+            </div>
+            
+            <div class="architecture-steps">
+                <div class="step">
+                    <h4>📥 Ingestão</h4>
+                    <p>Coleta automatizada de múltiplas fontes</p>
+                </div>
+                <div class="step">
+                    <h4>🔄 Processamento</h4>
+                    <p>ETL/ELT em batch ou real-time</p>
+                </div>
+                <div class="step">
+                    <h4>🗄️ Armazenamento</h4>
+                    <p>Data Lakes e Warehouses otimizados</p>
+                </div>
+                <div class="step">
+                    <h4>📊 Analytics</h4>
+                    <p>BI, dashboards e machine learning</p>
+                </div>
+                <div class="step">
+                    <h4>🔒 Segurança</h4>
+                    <p>Controle de acesso e compliance</p>
+                </div>
+                <div class="step">
+                    <h4>📈 Monitoramento</h4>
+                    <p>Observabilidade completa e alertas</p>
+                </div>
+            </div>
+            
+            <h3 style="text-align: center; margin: 3rem 0 2rem; color: var(--secondary);">Benefícios da Nossa Arquitetura</h3>
+            
+            <div class="benefits-grid">
+                <!-- Benefits will be generated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Entre em Contato</h2>
+                <p>Pronto para transformar seus dados em resultados?</p>
+            </div>
+            
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; opacity: 0.9;">
+                Nossa equipe está preparada para atender suas necessidades e criar a solução perfeita para o seu negócio.
+            </p>
+            
+            <div class="contact-info">
+                <a href="https://wa.me/258876164747" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp: +258 87 616 4747
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p style="font-size: 1.1rem; margin-bottom: 0.5rem; color: #94a3b8;">&copy; 2024 Node Site Data Cloud</p>
-        <p style="color: #64748b;">Data Analytics | Business Intelligence | Cloud Solutions | SQL & NoSQL | Tableau | Power BI</p>
-        <p style="margin-top: 1rem; color: #475569;">Transformando dados em inteligência de negócio</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Data Cloud</div>
+                <p class="footer-tagline">Transformando dados em inteligência de negócio com soluções completas em analytics, cloud computing e business intelligence.</p>
+                
+                <div class="footer-tags">
+                    <div class="tag">Data Analytics</div>
+                    <div class="tag">Business Intelligence</div>
+                    <div class="tag">Cloud Solutions</div>
+                    <div class="tag">SQL & NoSQL</div>
+                    <div class="tag">Tableau</div>
+                    <div class="tag">Power BI</div>
+                </div>
+                
+                <div class="copyright">
+                    © 2024 Node Site Data Cloud. Todos os direitos reservados.
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mobileNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Services data
+        const services = [
+            { icon: 'fas fa-chart-bar', title: 'Power BI', desc: 'Dashboards interativos e relatórios dinâmicos com integração de múltiplas fontes de dados.' },
+            { icon: 'fas fa-chart-line', title: 'Tableau', desc: 'Visualizações avançadas e análise em tempo real para storytelling com dados.' },
+            { icon: 'fas fa-file-excel', title: 'Excel Avançado', desc: 'Dashboards automatizados, modelagem de dados e análises financeiras.' },
+            { icon: 'fas fa-database', title: 'SQL & Bancos de Dados', desc: 'Modelagem, otimização e gestão de bancos de dados relacionais.' },
+            { icon: 'fas fa-fire', title: 'NoSQL & Big Data', desc: 'Soluções escaláveis para grandes volumes de dados não estruturados.' },
+            { icon: 'fas fa-cloud', title: 'Cloud Computing', desc: 'Migração e gestão de infraestrutura em nuvem (Azure, AWS, Google Cloud).' },
+            { icon: 'fas fa-warehouse', title: 'Data Warehouse', desc: 'Repositórios otimizados para análise com modelagem dimensional.' },
+            { icon: 'fas fa-water', title: 'Data Lake', desc: 'Armazenamento massivo para dados estruturados e não estruturados.' },
+            { icon: 'fas fa-robot', title: 'ETL & Integração de Dados', desc: 'Automação de pipelines de dados com limpeza e validação.' },
+            { icon: 'fas fa-graduation-cap', title: 'Consultoria & Treinamento', desc: 'Capacitação e consultoria estratégica para equipes.' },
+            { icon: 'fas fa-shield-alt', title: 'Data Governance & Segurança', desc: 'Proteção de dados com políticas robustas e compliance.' }
+        ];
+        
+        // Benefits data
+        const benefits = [
+            { icon: '⚡', title: 'Alta Performance', desc: 'Queries otimizadas que respondem em milissegundos' },
+            { icon: '📊', title: 'Escalabilidade Infinita', desc: 'Arquitetura cloud-native que escala automaticamente' },
+            { icon: '💰', title: 'Redução de Custos', desc: 'Redução de custos de infraestrutura em até 60%' },
+            { icon: '🔄', title: 'Automação Total', desc: 'Economia de centenas de horas de trabalho manual' },
+            { icon: '🛡️', title: 'Confiabilidade 99.9%', desc: 'Sistemas resilientes com recuperação automática' },
+            { icon: '🎯', title: 'Insights em Tempo Real', desc: 'Decisões baseadas em dados atualizados a cada segundo' }
+        ];
+        
+        // Generate services grid
+        const servicesGrid = document.querySelector('.services-grid');
+        services.forEach(service => {
+            const serviceCard = document.createElement('div');
+            serviceCard.className = 'service-card';
+            serviceCard.innerHTML = `
+                <div class="service-icon">
+                    <i class="${service.icon}"></i>
+                </div>
+                <h3>${service.title}</h3>
+                <p>${service.desc}</p>
+            `;
+            servicesGrid.appendChild(serviceCard);
+        });
+        
+        // Generate benefits grid
+        const benefitsGrid = document.querySelector('.benefits-grid');
+        benefits.forEach(benefit => {
+            const benefitCard = document.createElement('div');
+            benefitCard.className = 'benefit';
+            benefitCard.innerHTML = `
+                <div class="benefit-icon">${benefit.icon}</div>
+                <div>
+                    <h4>${benefit.title}</h4>
+                    <p>${benefit.desc}</p>
+                </div>
+            `;
+            benefitsGrid.appendChild(benefitCard);
+        });
+        
+        // Add active class to nav links based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Header shadow on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+            }
+        });
+    </script>
 </body>
 </html>
