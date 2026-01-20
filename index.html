@@ -3,15 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="https://img.icons8.com/color/96/000000/cloud.png">
-
-    <!-- ... outras tags meta e title ... -->
-    
-    <!-- Favicon - Ícone do site -->
     <link rel="icon" type="image/png" href="https://img.icons8.com/color/96/000000/data-configuration.png">
-    
-    <!-- ... resto do código ... -->
-
     <title>Data Cloud | Transforme Dados em Inteligência de Negócio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -214,6 +206,13 @@
             color: var(--primary);
             margin-bottom: 1rem;
             font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .mission-vision-values h3 i {
+            color: var(--accent);
         }
         
         .values-list {
@@ -225,14 +224,14 @@
             margin-bottom: 0.8rem;
             padding-left: 1.5rem;
             position: relative;
+            display: flex;
+            align-items: center;
         }
         
-        .values-list li:before {
-            content: '✓';
-            position: absolute;
-            left: 0;
+        .values-list li i {
             color: var(--accent);
-            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9rem;
         }
         
         /* Services Section */
@@ -298,6 +297,14 @@
         .step h4 {
             color: var(--primary);
             margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .step h4 i {
+            color: var(--accent);
         }
         
         .benefits-grid {
@@ -319,6 +326,9 @@
             font-size: 2rem;
             margin-right: 1rem;
             color: var(--accent);
+            min-width: 50px;
+            display: flex;
+            justify-content: center;
         }
         
         /* Contact Section */
@@ -355,6 +365,7 @@
         
         .contact-info a:hover {
             background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
         }
         
         .contact-info i {
@@ -503,6 +514,11 @@
             .step {
                 max-width: 100%;
             }
+            
+            .contact-info a {
+                font-size: 1rem;
+                padding: 0.7rem 1.2rem;
+            }
         }
     </style>
 </head>
@@ -530,7 +546,15 @@
             </nav>
         </div>
         
-          </header>
+        <!-- Mobile Navigation -->
+        <ul class="mobile-nav" id="mobileNav">
+            <li><a href="#home">Início</a></li>
+            <li><a href="#about">Sobre Nós</a></li>
+            <li><a href="#services">Serviços</a></li>
+            <li><a href="#architecture">Arquitetura</a></li>
+            <li><a href="#contact">Contato</a></li>
+        </ul>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -551,23 +575,23 @@
             
             <div class="about-content">
                 <div class="mission-vision-values">
-                    <h3>🎯 Nossa Missão</h3>
+                    <h3><i class="fas fa-bullseye"></i>Nossa Missão</h3>
                     <p>Democratizar o acesso a soluções avançadas de análise de dados, capacitando empresas de todos os portes a tomar decisões estratégicas baseadas em dados concretos.</p>
                 </div>
                 
                 <div class="mission-vision-values">
-                    <h3>👁️ Nossa Visão</h3>
+                    <h3><i class="fas fa-eye"></i>Nossa Visão</h3>
                     <p>Ser a referência líder em Moçambique e região em soluções de Data Analytics e Cloud Computing, reconhecida pela excelência técnica e inovação constante.</p>
                 </div>
                 
                 <div class="mission-vision-values">
-                    <h3>💎 Nossos Valores</h3>
+                    <h3><i class="fas fa-gem"></i>Nossos Valores</h3>
                     <ul class="values-list">
-                        <li>Excelência técnica</li>
-                        <li>Transparência total</li>
-                        <li>Compromisso com resultados</li>
-                        <li>Inovação contínua</li>
-                        <li>Atendimento humanizado</li>
+                        <li><i class="fas fa-check-circle"></i>Excelência técnica</li>
+                        <li><i class="fas fa-check-circle"></i>Transparência total</li>
+                        <li><i class="fas fa-check-circle"></i>Compromisso com resultados</li>
+                        <li><i class="fas fa-check-circle"></i>Inovação contínua</li>
+                        <li><i class="fas fa-check-circle"></i>Atendimento humanizado</li>
                     </ul>
                 </div>
             </div>
@@ -598,27 +622,27 @@
             
             <div class="architecture-steps">
                 <div class="step">
-                    <h4>📥 Ingestão</h4>
+                    <h4><i class="fas fa-download"></i>Ingestão</h4>
                     <p>Coleta automatizada de múltiplas fontes</p>
                 </div>
                 <div class="step">
-                    <h4>🔄 Processamento</h4>
+                    <h4><i class="fas fa-sync-alt"></i>Processamento</h4>
                     <p>ETL/ELT em batch ou real-time</p>
                 </div>
                 <div class="step">
-                    <h4>🗄️ Armazenamento</h4>
+                    <h4><i class="fas fa-database"></i>Armazenamento</h4>
                     <p>Data Lakes e Warehouses otimizados</p>
                 </div>
                 <div class="step">
-                    <h4>📊 Analytics</h4>
+                    <h4><i class="fas fa-chart-bar"></i>Analytics</h4>
                     <p>BI, dashboards e machine learning</p>
                 </div>
                 <div class="step">
-                    <h4>🔒 Segurança</h4>
+                    <h4><i class="fas fa-shield-alt"></i>Segurança</h4>
                     <p>Controle de acesso e compliance</p>
                 </div>
                 <div class="step">
-                    <h4>📈 Monitoramento</h4>
+                    <h4><i class="fas fa-tachometer-alt"></i>Monitoramento</h4>
                     <p>Observabilidade completa e alertas</p>
                 </div>
             </div>
@@ -719,23 +743,23 @@
             { icon: 'fas fa-chart-line', title: 'Tableau', desc: 'Visualizações avançadas e análise em tempo real para storytelling com dados.' },
             { icon: 'fas fa-file-excel', title: 'Excel Avançado', desc: 'Dashboards automatizados, modelagem de dados e análises financeiras.' },
             { icon: 'fas fa-database', title: 'SQL & Bancos de Dados', desc: 'Modelagem, otimização e gestão de bancos de dados relacionais.' },
-            { icon: 'fas fa-fire', title: 'NoSQL & Big Data', desc: 'Soluções escaláveis para grandes volumes de dados não estruturados.' },
+            { icon: 'fas fa-server', title: 'NoSQL & Big Data', desc: 'Soluções escaláveis para grandes volumes de dados não estruturados.' },
             { icon: 'fas fa-cloud', title: 'Cloud Computing', desc: 'Migração e gestão de infraestrutura em nuvem (Azure, AWS, Google Cloud).' },
             { icon: 'fas fa-warehouse', title: 'Data Warehouse', desc: 'Repositórios otimizados para análise com modelagem dimensional.' },
-            { icon: 'fas fa-water', title: 'Data Lake', desc: 'Armazenamento massivo para dados estruturados e não estruturados.' },
-            { icon: 'fas fa-robot', title: 'ETL & Integração de Dados', desc: 'Automação de pipelines de dados com limpeza e validação.' },
+            { icon: 'fas fa-tint', title: 'Data Lake', desc: 'Armazenamento massivo para dados estruturados e não estruturados.' },
+            { icon: 'fas fa-exchange-alt', title: 'ETL & Integração de Dados', desc: 'Automação de pipelines de dados com limpeza e validação.' },
             { icon: 'fas fa-graduation-cap', title: 'Consultoria & Treinamento', desc: 'Capacitação e consultoria estratégica para equipes.' },
-            { icon: 'fas fa-shield-alt', title: 'Data Governance & Segurança', desc: 'Proteção de dados com políticas robustas e compliance.' }
+            { icon: 'fas fa-user-shield', title: 'Data Governance & Segurança', desc: 'Proteção de dados com políticas robustas e compliance.' }
         ];
         
-        // Benefits data
+        // Benefits data with FontAwesome icons
         const benefits = [
-            { icon: '⚡', title: 'Alta Performance', desc: 'Queries otimizadas que respondem em milissegundos' },
-            { icon: '📊', title: 'Escalabilidade Infinita', desc: 'Arquitetura cloud-native que escala automaticamente' },
-            { icon: '💰', title: 'Redução de Custos', desc: 'Redução de custos de infraestrutura em até 60%' },
-            { icon: '🔄', title: 'Automação Total', desc: 'Economia de centenas de horas de trabalho manual' },
-            { icon: '🛡️', title: 'Confiabilidade 99.9%', desc: 'Sistemas resilientes com recuperação automática' },
-            { icon: '🎯', title: 'Insights em Tempo Real', desc: 'Decisões baseadas em dados atualizados a cada segundo' }
+            { icon: '<i class="fas fa-bolt"></i>', title: 'Alta Performance', desc: 'Queries otimizadas que respondem em milissegundos' },
+            { icon: '<i class="fas fa-expand-arrows-alt"></i>', title: 'Escalabilidade Infinita', desc: 'Arquitetura cloud-native que escala automaticamente' },
+            { icon: '<i class="fas fa-money-bill-wave"></i>', title: 'Redução de Custos', desc: 'Redução de custos de infraestrutura em até 60%' },
+            { icon: '<i class="fas fa-robot"></i>', title: 'Automação Total', desc: 'Economia de centenas de horas de trabalho manual' },
+            { icon: '<i class="fas fa-shield-check"></i>', title: 'Confiabilidade 99.9%', desc: 'Sistemas resilientes com recuperação automática' },
+            { icon: '<i class="fas fa-clock"></i>', title: 'Insights em Tempo Real', desc: 'Decisões baseadas em dados atualizados a cada segundo' }
         ];
         
         // Generate services grid
