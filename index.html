@@ -1,819 +1,691 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="https://img.icons8.com/color/96/000000/data-configuration.png">
-    <title>Data Cloud | Transforme Dados em Inteligência de Negócio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #0f172a;
-            --accent: #06b6d4;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --dark: #1e293b;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --transition: all 0.3s ease;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: var(--dark);
-            line-height: 1.6;
-            background-color: var(--light);
-        }
-        
-        h1, h2, h3, h4 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        /* Header & Navigation */
-        header {
-            background-color: white;
-            box-shadow: var(--shadow);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            color: var(--accent);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 2rem;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--secondary);
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--primary);
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-            color: white;
-            padding: 10rem 0 6rem;
-            margin-top: 70px;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-            opacity: 0.9;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background-color: #0891b2;
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-        
-        .btn-primary {
-            background-color: var(--primary);
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-        }
-        
-        /* Sections */
-        section {
-            padding: 5rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title h2:after {
-            content: '';
-            position: absolute;
-            width: 70px;
-            height: 4px;
-            background-color: var(--accent);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-        
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-        }
-        
-        .mission-vision-values {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .mission-vision-values:hover {
-            transform: translateY(-5px);
-        }
-        
-        .mission-vision-values h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .mission-vision-values h3 i {
-            color: var(--accent);
-        }
-        
-        .values-list {
-            list-style: none;
-            margin-top: 1.5rem;
-        }
-        
-        .values-list li {
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-        
-        .values-list li i {
-            color: var(--accent);
-            margin-right: 10px;
-            font-size: 0.9rem;
-        }
-        
-        /* Services Section */
-        .services {
-            background-color: #f1f5f9;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .service-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-card h3 {
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-        
-        /* Architecture Section */
-        .architecture-steps {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-        
-        .step {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            flex: 1;
-            min-width: 200px;
-            max-width: 300px;
-            text-align: center;
-            transition: var(--transition);
-        }
-        
-        .step:hover {
-            transform: scale(1.05);
-        }
-        
-        .step h4 {
-            color: var(--primary);
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .step h4 i {
-            color: var(--accent);
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .benefit {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-        }
-        
-        .benefit-icon {
-            font-size: 2rem;
-            margin-right: 1rem;
-            color: var(--accent);
-            min-width: 50px;
-            display: flex;
-            justify-content: center;
-        }
-        
-        /* Contact Section */
-        .contact {
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-            color: white;
-            text-align: center;
-        }
-        
-        .contact .section-title h2 {
-            color: white;
-        }
-        
-        .contact .section-title h2:after {
-            background-color: var(--accent);
-        }
-        
-        .contact-info {
-            margin-top: 2rem;
-            font-size: 1.2rem;
-        }
-        
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            transition: var(--transition);
-        }
-        
-        .contact-info a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-        }
-        
-        .contact-info i {
-            margin-right: 10px;
-            font-size: 1.5rem;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--secondary);
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
-        }
-        
-        .footer-tagline {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
-            max-width: 600px;
-        }
-        
-        .footer-tags {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .tag {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-        
-        .copyright {
-            opacity: 0.7;
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 1.5rem;
-            width: 100%;
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .mobile-nav {
-                display: flex;
-                flex-direction: column;
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                box-shadow: var(--shadow);
-                padding: 1rem;
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: var(--transition);
-                z-index: 999;
-            }
-            
-            .mobile-nav.active {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            
-            .mobile-nav li {
-                margin: 0;
-                padding: 0.8rem 0;
-                border-bottom: 1px solid #eee;
-            }
-            
-            .mobile-nav a {
-                display: block;
-                width: 100%;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero {
-                padding: 8rem 0 4rem;
-            }
-            
-            section {
-                padding: 3rem 0;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .architecture-steps {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .step {
-                max-width: 100%;
-            }
-            
-            .contact-info a {
-                font-size: 1rem;
-                padding: 0.7rem 1.2rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevStack · Software de Gestão | Moçambique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Cabinet+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --ink:       #0C1C16;
+  --ink-80:    #1A2E24;
+  --ink-60:    #2E4A3C;
+  --forest:    #1B5740;
+  --jade:      #2E7D5C;
+  --sage:      #4FA882;
+  --mist:      #A8CDBF;
+  --foam:      #D6EBE0;
+  --linen:     #F3EDE3;
+  --cream:     #FAF7F2;
+  --gold:      #C8922A;
+  --gold-lt:   #E8B55A;
+  --gold-pale: #F5DFA8;
+  --white:     #FFFFFF;
+  --ff-serif:  'Cormorant Garamond', Georgia, serif;
+  --ff-sans:   'Cabinet Grotesk', system-ui, sans-serif;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-sans);background:var(--cream);color:var(--ink);overflow-x:hidden}
+
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--linen)}
+::-webkit-scrollbar-thumb{background:var(--jade);border-radius:10px}
+
+/* ── CURSOR ── */
+*, a{cursor:none}
+#cursor{position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:multiply;transition:transform .12s ease}
+#cursor .dot{width:8px;height:8px;background:var(--gold);border-radius:50%;position:absolute;top:-4px;left:-4px;transition:transform .15s ease}
+#cursor .ring{width:36px;height:36px;border:1.5px solid var(--jade);border-radius:50%;position:absolute;top:-18px;left:-18px;transition:transform .3s ease,opacity .2s}
+body:hover #cursor .ring{opacity:1}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 60px;height:72px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,box-shadow .4s}
+nav.scrolled{background:rgba(243,237,227,.93);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(0,0,0,.06)}
+
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none}
+.nav-mark{width:38px;height:38px;background:var(--forest);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.nav-mark::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,146,42,.4),transparent 60%)}
+.nav-mark svg{width:18px;height:18px;fill:var(--gold-lt);position:relative;z-index:1}
+.brand-name{font-family:var(--ff-sans);font-weight:800;font-size:1.15rem;color:var(--ink);letter-spacing:-.3px}
+.brand-tag{font-size:.65rem;color:var(--jade);font-weight:500;letter-spacing:.5px}
+
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{text-decoration:none;font-size:.82rem;font-weight:500;color:var(--ink-60);letter-spacing:.3px;position:relative;padding-bottom:2px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .25s ease}
+.nav-links a:hover::after{width:100%}
+.nav-links a:hover{color:var(--gold)}
+
+.nav-btn{display:flex;align-items:center;gap:8px;background:var(--forest);color:var(--white);padding:9px 22px;border-radius:100px;font-size:.8rem;font-weight:700;text-decoration:none;letter-spacing:.3px;transition:background .2s,transform .2s}
+.nav-btn:hover{background:var(--gold);transform:translateY(-1px)}
+
+@media(max-width:860px){.nav-links{display:none};nav{padding:0 24px}}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr;position:relative;overflow:hidden;background:var(--ink)}
+
+.hero-bg{position:absolute;inset:0}
+.hero-bg canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-noise{position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px}
+.hero-gradient{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 70% 50%, rgba(27,87,64,.7) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 20% 80%, rgba(200,146,42,.12) 0%, transparent 60%)}
+
+.hero-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:140px 60px 100px;width:100%;display:flex;align-items:center;gap:80px}
+
+@media(max-width:900px){.hero-inner{padding:120px 24px 80px;flex-direction:column;gap:48px}}
+
+.hero-copy{flex:1.3}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:36px}
+.eyebrow-line{width:32px;height:1px;background:var(--gold)}
+.eyebrow-text{font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-lt)}
+
+.hero-h1{font-family:var(--ff-serif);font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.05;color:var(--white);margin-bottom:12px;letter-spacing:-.5px}
+.hero-h1 em{font-style:italic;color:var(--gold-lt)}
+.hero-h1 strong{font-weight:600;display:block}
+
+.hero-sub{font-size:1rem;color:var(--mist);line-height:1.75;max-width:500px;margin:28px 0 48px;font-weight:400}
+
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.btn-hero-primary{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--ink);padding:15px 34px;border-radius:100px;font-size:.88rem;font-weight:700;text-decoration:none;letter-spacing:.3px;transition:background .2s,transform .2s,box-shadow .2s}
+.btn-hero-primary:hover{background:var(--gold-lt);transform:translateY(-3px);box-shadow:0 16px 40px rgba(200,146,42,.35)}
+.btn-hero-ghost{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--mist);padding:14px 30px;border-radius:100px;border:1px solid rgba(255,255,255,.18);font-size:.88rem;font-weight:500;text-decoration:none;transition:border-color .2s,color .2s}
+.btn-hero-ghost:hover{border-color:rgba(255,255,255,.5);color:var(--white)}
+
+.hero-stats-col{flex:.8;display:flex;flex-direction:column;gap:2px}
+.stat-card{padding:28px 32px;border:1px solid rgba(255,255,255,.07);border-radius:20px;background:rgba(255,255,255,.04);backdrop-filter:blur(8px);transition:background .25s,border-color .25s;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gold);opacity:0;transition:opacity .25s;border-radius:0 2px 2px 0}
+.stat-card:hover{background:rgba(255,255,255,.08);border-color:rgba(200,146,42,.25)}
+.stat-card:hover::before{opacity:1}
+.stat-n{font-family:var(--ff-serif);font-size:2.8rem;font-weight:600;color:var(--white);line-height:1;letter-spacing:-1px}
+.stat-n span{font-size:1.6rem;color:var(--gold-lt)}
+.stat-l{font-size:.78rem;color:var(--mist);margin-top:4px;font-weight:400}
+
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;z-index:2}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,transparent,var(--gold));animation:scrollpulse 2s ease-in-out infinite}
+.scroll-label{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35)}
+@keyframes scrollpulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* ── WRAP ── */
+.wrap{max-width:1280px;margin:0 auto;padding:0 60px}
+@media(max-width:860px){.wrap{padding:0 24px}}
+
+/* ── SECTION SHARED ── */
+.sec{padding:100px 0}
+.sec-eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px}
+.sec-eyebrow .line{width:24px;height:1px;background:var(--gold)}
+.sec-eyebrow .txt{font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+h2.sec-title{font-family:var(--ff-serif);font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;color:var(--ink);line-height:1.1;letter-spacing:-.3px;margin-bottom:16px}
+h2.sec-title em{font-style:italic;color:var(--jade)}
+.sec-sub{font-size:.97rem;color:var(--ink-60);line-height:1.75;max-width:580px}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:linear-gradient(to right,transparent,var(--mist),transparent);margin:0}
+
+/* ── SOLUÇÕES ── */
+.solucoes-bg{background:var(--white)}
+
+.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px;border-radius:28px;overflow:hidden;box-shadow:0 32px 80px -20px rgba(12,28,22,.12)}
+@media(max-width:860px){.sol-grid{grid-template-columns:1fr;gap:2px}}
+
+.sol-panel{background:var(--cream);padding:52px 44px;position:relative;overflow:hidden;transition:background .35s}
+.sol-panel::after{content:'';position:absolute;top:0;right:0;width:120px;height:120px;border-radius:50%;opacity:0;transition:opacity .4s,transform .4s;transform:translate(50%,-50%) scale(.5)}
+.sol-panel.c1::after{background:radial-gradient(circle,rgba(46,125,92,.15),transparent 70%)}
+.sol-panel.c2::after{background:radial-gradient(circle,rgba(200,146,42,.15),transparent 70%)}
+.sol-panel.c3::after{background:radial-gradient(circle,rgba(79,168,130,.15),transparent 70%)}
+.sol-panel:hover{background:var(--white)}
+.sol-panel:hover::after{opacity:1;transform:translate(50%,-50%) scale(1)}
+
+.sol-num{font-family:var(--ff-serif);font-size:4rem;font-weight:300;color:var(--foam);line-height:1;margin-bottom:28px;transition:color .3s}
+.sol-panel:hover .sol-num{color:var(--mist)}
+.sol-icon-wrap{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:28px}
+.sol-icon-wrap.g1{background:var(--foam)}
+.sol-icon-wrap.g2{background:var(--gold-pale)}
+.sol-icon-wrap.g3{background:var(--foam)}
+.sol-icon-wrap svg{width:26px;height:26px;stroke-width:1.6;fill:none}
+.sol-icon-wrap.g1 svg{stroke:var(--jade)}
+.sol-icon-wrap.g2 svg{stroke:var(--gold)}
+.sol-icon-wrap.g3 svg{stroke:var(--sage)}
+
+.sol-panel h3{font-family:var(--ff-serif);font-size:1.7rem;font-weight:600;color:var(--ink);margin-bottom:14px;line-height:1.2}
+.sol-panel p{font-size:.88rem;color:var(--ink-60);line-height:1.75;margin-bottom:24px}
+.sol-disclaimer{font-size:.72rem;color:var(--sage);font-weight:500;display:flex;align-items:center;gap:6px;padding-top:16px;border-top:1px solid var(--foam)}
+
+.sol-panel .sol-tag{position:absolute;top:24px;right:24px;width:36px;height:36px;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.7);transition:opacity .3s,transform .3s}
+.sol-panel:hover .sol-tag{opacity:1;transform:scale(1)}
+.sol-tag svg{width:14px;height:14px;stroke:var(--jade);fill:none;stroke-width:2.5}
+
+/* ── VANTAGENS ── */
+.van-bg{background:var(--ink);position:relative;overflow:hidden}
+.van-bg::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(27,87,64,.5) 0%,transparent 70%);pointer-events:none}
+.van-bg::after{content:'';position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(200,146,42,.08) 0%,transparent 70%);pointer-events:none}
+
+.van-bg h2.sec-title{color:var(--white)}
+.van-bg h2.sec-title em{color:var(--gold-lt)}
+.van-bg .sec-sub{color:var(--mist)}
+.van-bg .sec-eyebrow .txt{color:var(--gold-lt)}
+.van-bg .sec-eyebrow .line{background:var(--gold-lt)}
+
+.tabs-row{display:flex;gap:4px;flex-wrap:wrap;margin:48px 0 40px;background:rgba(255,255,255,.05);border-radius:100px;padding:5px;width:fit-content}
+.tab{background:transparent;border:none;color:rgba(255,255,255,.5);padding:10px 24px;border-radius:100px;font-size:.82rem;font-weight:500;font-family:var(--ff-sans);cursor:none;transition:background .22s,color .22s;letter-spacing:.2px}
+.tab.on{background:var(--gold);color:var(--ink);font-weight:700}
+.tab:hover:not(.on){color:var(--white);background:rgba(255,255,255,.08)}
+
+.van-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:700px){.van-grid{grid-template-columns:1fr}}
+.van-block{display:none}
+.van-block.on{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:700px){.van-block.on{grid-template-columns:1fr}}
+
+.van-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:22px 24px;display:flex;gap:16px;align-items:flex-start;transition:background .25s,border-color .25s}
+.van-item:hover{background:rgba(255,255,255,.08);border-color:rgba(200,146,42,.3)}
+.van-dot{width:28px;height:28px;background:rgba(200,146,42,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.van-dot svg{width:13px;height:13px;stroke:var(--gold-lt);fill:none;stroke-width:2.5}
+.van-item strong{display:block;font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:4px}
+.van-item p{font-size:.8rem;color:var(--mist);line-height:1.55}
+
+/* ── SOBRE ── */
+.sobre-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+@media(max-width:860px){.sobre-layout{grid-template-columns:1fr;gap:48px}}
+
+.sobre-card{background:var(--forest);border-radius:32px;padding:48px 44px;position:relative;overflow:hidden}
+.sobre-card::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,.18),transparent 70%)}
+.sobre-card::after{content:'DS';position:absolute;bottom:-20px;right:24px;font-family:var(--ff-serif);font-size:9rem;font-weight:700;color:rgba(255,255,255,.04);line-height:1;letter-spacing:-4px;pointer-events:none}
+
+.mvv{padding:20px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.mvv:last-child{border-bottom:none;padding-bottom:0}
+.mvv:first-child{padding-top:0}
+.mvv-label{font-size:.64rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-lt);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.mvv-label::before{content:'';width:16px;height:1px;background:var(--gold-lt)}
+.mvv-text{font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.7}
+
+.sobre-right{padding-top:8px}
+.sobre-right h2{margin-bottom:20px}
+.sobre-right p{font-size:.95rem;color:var(--ink-60);line-height:1.8;margin-bottom:16px}
+
+.numbers-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+.num-box{background:var(--linen);border-radius:20px;padding:24px 26px}
+.num-big{font-family:var(--ff-serif);font-size:2.4rem;font-weight:600;color:var(--forest);line-height:1}
+.num-big small{font-size:1.2rem;color:var(--gold)}
+.num-desc{font-size:.78rem;color:var(--ink-60);margin-top:6px;line-height:1.4}
+
+.team-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.tm{background:var(--white);border:1px solid var(--foam);border-radius:18px;padding:20px 22px}
+.tm-role{font-size:.68rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--jade);font-weight:700;margin-bottom:6px}
+.tm-name{font-family:var(--ff-serif);font-size:1.1rem;font-weight:600;color:var(--ink)}
+
+/* ── CONTATO ── */
+.contato-bg{background:var(--linen)}
+
+.contato-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start}
+@media(max-width:860px){.contato-wrap{grid-template-columns:1fr}}
+
+.contato-left{}
+.contato-left h2{margin-bottom:18px}
+.contato-left p{font-size:.93rem;color:var(--ink-60);line-height:1.75;margin-bottom:36px}
+
+.cinfo{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--foam)}
+.cinfo:last-of-type{border-bottom:none}
+.ci-dot{width:40px;height:40px;background:var(--forest);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ci-dot svg{width:17px;height:17px;stroke:var(--gold-lt);fill:none;stroke-width:2}
+.ci-lbl{font-size:.7rem;color:var(--sage);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.ci-val{font-size:.9rem;font-weight:700;color:var(--ink)}
+
+.sol-pill-list{margin-top:32px;background:var(--white);border-radius:20px;padding:24px 26px}
+.pill-head{font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--jade);font-weight:700;margin-bottom:16px}
+.pill-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--foam);font-size:.88rem;color:var(--ink-60)}
+.pill-item:last-child{border-bottom:none}
+.pill-item svg{width:14px;height:14px;stroke:var(--jade);fill:none;stroke-width:2.5;flex-shrink:0}
+
+/* ── FORM ── */
+.form-card{background:var(--white);border-radius:28px;padding:44px 40px;box-shadow:0 24px 60px -12px rgba(12,28,22,.1)}
+.form-card h3{font-family:var(--ff-serif);font-size:1.8rem;font-weight:600;color:var(--ink);margin-bottom:28px}
+
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--jade);margin-bottom:8px}
+.fg input,.fg select,.fg textarea{width:100%;padding:13px 18px;background:var(--cream);border:1.5px solid var(--foam);border-radius:12px;font-family:var(--ff-sans);font-size:.9rem;color:var(--ink);outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--jade);background:var(--white)}
+.fg textarea{resize:vertical;border-radius:14px}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.fg-row{grid-template-columns:1fr}}
+
+.btn-send{width:100%;padding:16px;background:var(--forest);color:var(--white);border:none;border-radius:14px;font-family:var(--ff-sans);font-size:.9rem;font-weight:700;cursor:none;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px;letter-spacing:.3px;transition:background .2s,transform .2s,box-shadow .2s}
+.btn-send:hover{background:var(--jade);transform:translateY(-2px);box-shadow:0 12px 32px rgba(27,87,64,.28)}
+.btn-send svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.2}
+
+/* ── FOOTER ── */
+footer{background:var(--ink-80);padding:72px 0 40px}
+.ft-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:32px}
+@media(max-width:900px){.ft-grid{grid-template-columns:1fr 1fr;gap:32px}}
+
+.ft-brand-name{font-family:var(--ff-serif);font-size:1.6rem;font-weight:600;color:var(--white);margin-bottom:16px;letter-spacing:-.3px}
+.ft-brand-name span{color:var(--gold-lt)}
+.ft-desc{font-size:.84rem;color:rgba(255,255,255,.4);line-height:1.8;max-width:260px}
+.ft-disc{font-size:.72rem;color:rgba(255,255,255,.2);margin-top:20px;line-height:1.7}
+
+.ft-col h4{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold-lt);font-weight:700;margin-bottom:22px}
+.ft-col a,.ft-col p{display:block;font-size:.86rem;color:rgba(255,255,255,.45);text-decoration:none;padding:5px 0;transition:color .18s}
+.ft-col a:hover{color:var(--gold-lt)}
+
+.ft-bottom{text-align:center;font-size:.76rem;color:rgba(255,255,255,.2)}
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.22,.68,0,1.2),transform .7s cubic-bezier(.22,.68,0,1.2)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal[data-d="1"]{transition-delay:.1s}
+.reveal[data-d="2"]{transition-delay:.2s}
+.reveal[data-d="3"]{transition-delay:.3s}
+
+/* ── HERO CANVAS DOTS ── */
+@keyframes fadein{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-copy>*{animation:fadein .8s ease both}
+.hero-eyebrow{animation-delay:.2s}
+.hero-h1{animation-delay:.35s}
+.hero-sub{animation-delay:.5s}
+.hero-actions{animation-delay:.65s}
+.hero-stats-col .stat-card:nth-child(1){animation:fadein .7s .3s ease both}
+.hero-stats-col .stat-card:nth-child(2){animation:fadein .7s .45s ease both}
+.hero-stats-col .stat-card:nth-child(3){animation:fadein .7s .6s ease both}
+.hero-stats-col .stat-card:nth-child(4){animation:fadein .7s .75s ease both}
+</style>
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container">
-            <nav class="nav-container">
-                <div class="logo">
-                    <i class="fas fa-cloud"></i>
-                    <span>Data Cloud</span>
-                </div>
-                
-                <ul class="nav-links">
-                    <li><a href="#home">Início</a></li>
-                    <li><a href="#about">Sobre Nós</a></li>
-                    <li><a href="#services">Serviços</a></li>
-                    <li><a href="#architecture">Arquitetura</a></li>
-                    <li><a href="#contact">Contato</a></li>
-                </ul>
-                
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Transforme Dados em Inteligência de Negócio</h1>
-            <p>Soluções completas em Analytics, Cloud Computing e Business Intelligence para impulsionar o sucesso do seu negócio.</p>
-            <a href="#contact" class="btn btn-primary">Comece Agora</a>
-        </div>
-    </section>
+<!-- Cursor -->
+<div id="cursor"><div class="ring"></div><div class="dot"></div></div>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>Sobre Nós</h2>
-                <p>Especialistas em transformar dados complexos em insights acionáveis</p>
-            </div>
-            
-            <div class="about-content">
-                <div class="mission-vision-values">
-                    <h3><i class="fas fa-bullseye"></i>Nossa Missão</h3>
-                    <p>Democratizar o acesso a soluções avançadas de análise de dados, capacitando empresas de todos os portes a tomar decisões estratégicas baseadas em dados concretos.</p>
-                </div>
-                
-                <div class="mission-vision-values">
-                    <h3><i class="fas fa-eye"></i>Nossa Visão</h3>
-                    <p>Ser a referência líder em Moçambique e região em soluções de Data Analytics e Cloud Computing, reconhecida pela excelência técnica e inovação constante.</p>
-                </div>
-                
-                <div class="mission-vision-values">
-                    <h3><i class="fas fa-gem"></i>Nossos Valores</h3>
-                    <ul class="values-list">
-                        <li><i class="fas fa-check-circle"></i>Excelência técnica</li>
-                        <li><i class="fas fa-check-circle"></i>Transparência total</li>
-                        <li><i class="fas fa-check-circle"></i>Compromisso com resultados</li>
-                        <li><i class="fas fa-check-circle"></i>Inovação contínua</li>
-                        <li><i class="fas fa-check-circle"></i>Atendimento humanizado</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ═══ NAV ═══ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-mark">
+      <svg viewBox="0 0 24 24"><path d="M4 6l8-4 8 4v12l-8 4-8-4V6z"/></svg>
+    </div>
+    <div>
+      <div class="brand-name">DevStack</div>
+      <div class="brand-tag">software de gestão · Maputo</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#solucoes">Soluções</a></li>
+    <li><a href="#vantagens">Vantagens</a></li>
+    <li><a href="#sobre">Quem Somos</a></li>
+    <li><a href="#contato">Contacto</a></li>
+  </ul>
+  <a href="#contato" class="nav-btn">87 616 4747</a>
+</nav>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Nossos Serviços</h2>
-                <p>Soluções completas e integradas para todas as suas necessidades de dados e analytics</p>
-            </div>
-            
-            <div class="services-grid">
-                <!-- Service cards will be generated by JavaScript -->
-            </div>
-        </div>
-    </section>
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-noise"></div>
+    <div class="hero-gradient"></div>
+  </div>
 
-    <!-- Architecture Section -->
-    <section id="architecture">
-        <div class="container">
-            <div class="section-title">
-                <h2>Arquitetura de Soluções</h2>
-                <p>Construímos arquiteturas de dados robustas, escaláveis e sob medida para o seu negócio</p>
-            </div>
-            
-            <div class="architecture-steps">
-                <div class="step">
-                    <h4><i class="fas fa-download"></i>Ingestão</h4>
-                    <p>Coleta automatizada de múltiplas fontes</p>
-                </div>
-                <div class="step">
-                    <h4><i class="fas fa-sync-alt"></i>Processamento</h4>
-                    <p>ETL/ELT em batch ou real-time</p>
-                </div>
-                <div class="step">
-                    <h4><i class="fas fa-database"></i>Armazenamento</h4>
-                    <p>Data Lakes e Warehouses otimizados</p>
-                </div>
-                <div class="step">
-                    <h4><i class="fas fa-chart-bar"></i>Analytics</h4>
-                    <p>BI, dashboards e machine learning</p>
-                </div>
-                <div class="step">
-                    <h4><i class="fas fa-shield-alt"></i>Segurança</h4>
-                    <p>Controle de acesso e compliance</p>
-                </div>
-                <div class="step">
-                    <h4><i class="fas fa-tachometer-alt"></i>Monitoramento</h4>
-                    <p>Observabilidade completa e alertas</p>
-                </div>
-            </div>
-            
-            <h3 style="text-align: center; margin: 3rem 0 2rem; color: var(--secondary);">Benefícios da Nossa Arquitetura</h3>
-            
-            <div class="benefits-grid">
-                <!-- Benefits will be generated by JavaScript -->
-            </div>
-        </div>
-    </section>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-line"></div>
+        <div class="eyebrow-text">software empresarial · desde 2026</div>
+      </div>
+      <h1 class="hero-h1">
+        Gestão inteligente<br>
+        <em>para o futuro</em><br>
+        <strong>de Moçambique</strong>
+      </h1>
+      <p class="hero-sub">Aplicações completas para microcrédito, recursos hídricos e análise de dados — desenvolvidas para a realidade moçambicana, com suporte local e integração M-Pesa.</p>
+      <div class="hero-actions">
+        <a href="#contato" class="btn-hero-primary">Solicitar demonstração →</a>
+        <a href="#solucoes" class="btn-hero-ghost">Ver soluções</a>
+      </div>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Entre em Contato</h2>
-                <p>Pronto para transformar seus dados em resultados?</p>
-            </div>
-            
-            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; opacity: 0.9;">
-                Nossa equipe está preparada para atender suas necessidades e criar a solução perfeita para o seu negócio.
-            </p>
-            
-            <div class="contact-info">
-                <a href="https://wa.me/258876164747" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                    WhatsApp: +258 87 616 4747
-                </a>
-            </div>
-        </div>
-    </section>
+    <div class="hero-stats-col">
+      <div class="stat-card">
+        <div class="stat-n"><span>+</span>30</div>
+        <div class="stat-l">softwares de microcrédito implementados</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n"><span>+</span>15</div>
+        <div class="stat-l">sistemas de gestão de água instalados</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n"><span>+</span>45</div>
+        <div class="stat-l">projetos de BI &amp; dashboards entregues</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">2026</div>
+        <div class="stat-l">a desenvolver tecnologia em Moçambique</div>
+      </div>
+    </div>
+  </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">Data Cloud</div>
-                <p class="footer-tagline">Transformando dados em inteligência de negócio com soluções completas em analytics, cloud computing e business intelligence.</p>
-                
-                <div class="footer-tags">
-                    <div class="tag">Data Analytics</div>
-                    <div class="tag">Business Intelligence</div>
-                    <div class="tag">Cloud Solutions</div>
-                    <div class="tag">SQL & NoSQL</div>
-                    <div class="tag">Tableau</div>
-                    <div class="tag">Power BI</div>
-                </div>
-                
-                <div class="copyright">
-                    © 2024 Node Site Data Cloud. Todos os direitos reservados.
-                </div>
-            </div>
-        </div>
-    </footer>
+  <div class="hero-scroll">
+    <span class="scroll-label">scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
 
-    <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileNav = document.getElementById('mobileNav');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileNav.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mobileNav.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.mobile-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Services data
-        const services = [
-            { icon: 'fas fa-chart-bar', title: 'Power BI', desc: 'Dashboards interativos e relatórios dinâmicos com integração de múltiplas fontes de dados.' },
-            { icon: 'fas fa-chart-line', title: 'Tableau', desc: 'Visualizações avançadas e análise em tempo real para storytelling com dados.' },
-            { icon: 'fas fa-file-excel', title: 'Excel Avançado', desc: 'Dashboards automatizados, modelagem de dados e análises financeiras.' },
-            { icon: 'fas fa-database', title: 'SQL & Bancos de Dados', desc: 'Modelagem, otimização e gestão de bancos de dados relacionais.' },
-            { icon: 'fas fa-server', title: 'NoSQL & Big Data', desc: 'Soluções escaláveis para grandes volumes de dados não estruturados.' },
-            { icon: 'fas fa-cloud', title: 'Cloud Computing', desc: 'Migração e gestão de infraestrutura em nuvem (Azure, AWS, Google Cloud).' },
-            { icon: 'fas fa-warehouse', title: 'Data Warehouse', desc: 'Repositórios otimizados para análise com modelagem dimensional.' },
-            { icon: 'fas fa-tint', title: 'Data Lake', desc: 'Armazenamento massivo para dados estruturados e não estruturados.' },
-            { icon: 'fas fa-exchange-alt', title: 'ETL & Integração de Dados', desc: 'Automação de pipelines de dados com limpeza e validação.' },
-            { icon: 'fas fa-graduation-cap', title: 'Consultoria & Treinamento', desc: 'Capacitação e consultoria estratégica para equipes.' },
-            { icon: 'fas fa-user-shield', title: 'Data Governance & Segurança', desc: 'Proteção de dados com políticas robustas e compliance.' }
-        ];
-        
-        // Benefits data with FontAwesome icons
-        const benefits = [
-            { icon: '<i class="fas fa-bolt"></i>', title: 'Alta Performance', desc: 'Queries otimizadas que respondem em milissegundos' },
-            { icon: '<i class="fas fa-expand-arrows-alt"></i>', title: 'Escalabilidade Infinita', desc: 'Arquitetura cloud-native que escala automaticamente' },
-            { icon: '<i class="fas fa-money-bill-wave"></i>', title: 'Redução de Custos', desc: 'Redução de custos de infraestrutura em até 60%' },
-            { icon: '<i class="fas fa-robot"></i>', title: 'Automação Total', desc: 'Economia de centenas de horas de trabalho manual' },
-            { icon: '<i class="fas fa-shield-check"></i>', title: 'Confiabilidade 99.9%', desc: 'Sistemas resilientes com recuperação automática' },
-            { icon: '<i class="fas fa-clock"></i>', title: 'Insights em Tempo Real', desc: 'Decisões baseadas em dados atualizados a cada segundo' }
-        ];
-        
-        // Generate services grid
-        const servicesGrid = document.querySelector('.services-grid');
-        services.forEach(service => {
-            const serviceCard = document.createElement('div');
-            serviceCard.className = 'service-card';
-            serviceCard.innerHTML = `
-                <div class="service-icon">
-                    <i class="${service.icon}"></i>
-                </div>
-                <h3>${service.title}</h3>
-                <p>${service.desc}</p>
-            `;
-            servicesGrid.appendChild(serviceCard);
-        });
-        
-        // Generate benefits grid
-        const benefitsGrid = document.querySelector('.benefits-grid');
-        benefits.forEach(benefit => {
-            const benefitCard = document.createElement('div');
-            benefitCard.className = 'benefit';
-            benefitCard.innerHTML = `
-                <div class="benefit-icon">${benefit.icon}</div>
-                <div>
-                    <h4>${benefit.title}</h4>
-                    <p>${benefit.desc}</p>
-                </div>
-            `;
-            benefitsGrid.appendChild(benefitCard);
-        });
-        
-        // Add active class to nav links based on scroll position
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= sectionTop - 150) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // Header shadow on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
-            }
-        });
-    </script>
+<!-- ═══ SOLUÇÕES ═══ -->
+<section class="sec solucoes-bg" id="solucoes">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 0">
+      <div class="sec-eyebrow"><div class="line"></div><span class="txt">o que fornecemos</span></div>
+      <h2 class="sec-title">Três soluções,<br><em>uma missão</em></h2>
+      <p class="sec-sub" style="margin:0 auto">Software de gestão construído para operar no contexto moçambicano — com dados locais, integração de pagamentos móveis e suporte presencial.</p>
+    </div>
+    <div class="sol-grid reveal" data-d="1">
+      <div class="sol-panel c1">
+        <div class="sol-num">01</div>
+        <div class="sol-icon-wrap g1">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12l3 3 5-5"/></svg>
+        </div>
+        <h3>Gestão de Microcrédito</h3>
+        <p>Sistema completo para cooperativas e IMFs: controlo de empréstimos, clientes, cobranças e relatórios. Integração nativa com M-Pesa e e-Mola. Reduz inadimplência até 40%.</p>
+        <div class="sol-disclaimer">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          Fornecemos a ferramenta — não concedemos crédito
+        </div>
+        <div class="sol-tag"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="sol-panel c2">
+        <div class="sol-num">02</div>
+        <div class="sol-icon-wrap g2">
+          <svg viewBox="0 0 24 24"><path d="M12 22V12m0 0C10 9 7 8 5 10c-2 2-2 5 0 7l7 5 7-5c2-2 2-5 0-7-2-2-5-1-7 2z"/></svg>
+        </div>
+        <h3>Gestão de Água</h3>
+        <p>Monitoramento de reservatórios, leituras de consumo, facturação automática e relatórios para FIPAG e ARA. App offline para leitores de campo. Reduz perdas até 35%.</p>
+        <div class="sol-disclaimer">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          Fornecemos a tecnologia — não operamos água
+        </div>
+        <div class="sol-tag"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+      <div class="sol-panel c3">
+        <div class="sol-num">03</div>
+        <div class="sol-icon-wrap g3">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3>Análise de Dados & Power BI</h3>
+        <p>Dashboards interativos, ETL, KPIs personalizados e formações. Integra Excel, SQL, APIs e ERPs. Relatórios enviados automaticamente por e-mail e WhatsApp.</p>
+        <div class="sol-disclaimer">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          Transformamos os seus dados em inteligência
+        </div>
+        <div class="sol-tag"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ VANTAGENS ═══ -->
+<section class="sec van-bg" id="vantagens">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-eyebrow"><div class="line"></div><span class="txt">benefícios</span></div>
+      <h2 class="sec-title">Cada sistema,<br><em>uma vantagem real</em></h2>
+      <p class="sec-sub">Funcionalidades desenhadas para o contexto operacional moçambicano.</p>
+    </div>
+
+    <div class="tabs-row reveal" data-d="1">
+      <button class="tab on" onclick="setTab(this,'v1')">Microcrédito</button>
+      <button class="tab" onclick="setTab(this,'v2')">Gestão de Água</button>
+      <button class="tab" onclick="setTab(this,'v3')">Power BI</button>
+      <button class="tab" onclick="setTab(this,'v4')">Porquê DevStack</button>
+    </div>
+
+    <div id="v1" class="van-block on reveal" data-d="2">
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Redução de tempo operacional</strong><p>Automatiza todo o ciclo do crédito, da análise à quitação final.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Controlo total da carteira</strong><p>Visualização em tempo real da inadimplência e desempenho do portfólio.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Relatórios automáticos</strong><p>Balancetes, extratos e mapas de cobrança gerados automaticamente.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Segurança e conformidade</strong><p>Criptografia e cumprimento da Lei de Protecção de Dados de Moçambique.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Acesso remoto</strong><p>Sistema web acessível em qualquer dispositivo, incluindo app mobile.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Cobrança automatizada</strong><p>SMS, WhatsApp e e-mail — reduz inadimplência comprovadamente até 40%.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Dashboards executivos</strong><p>Indicadores de desempenho em tempo real para a gestão de topo.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Integração M-Pesa & e-Mola</strong><p>Pagamentos digitais e recebimentos directamente no sistema.</p></div></div>
+    </div>
+
+    <div id="v2" class="van-block reveal" data-d="2">
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Monitoramento em tempo real</strong><p>Níveis de reservatórios, pressão e fluxo visíveis em tempo real.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Redução de perdas</strong><p>Identificação de vazamentos e perdas não comerciais — até 35% de redução.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Facturação automática</strong><p>Emissão de facturas, recibos e avisos de pagamento sem intervenção manual.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Histórico de consumos</strong><p>Comparação mensal e anual por cliente, zona ou fontanário.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Gestão de manutenção</strong><p>Ordens de serviço, manutenção preventiva e histórico completo de avarias.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>App para leitores de campo</strong><p>Sincronização offline para equipas em zonas sem cobertura de internet.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Dashboards de eficiência</strong><p>Volume facturado, índice de perdas e produtividade de equipa em painel único.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Relatórios regulatórios</strong><p>Relatórios formatados para FIPAG, ARA e outras entidades fiscalizadoras.</p></div></div>
+    </div>
+
+    <div id="v3" class="van-block reveal" data-d="2">
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Visibilidade total do negócio</strong><p>Centraliza dados de múltiplas fontes num único painel interactivo.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Decisões mais rápidas</strong><p>Informação consolidada e actualizada em tempo real para gestores.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Identificação de tendências</strong><p>Análises preditivas para antecipar riscos e oportunidades de negócio.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Integração de fontes</strong><p>Excel, SQL Server, APIs REST, ERPs e bases de dados locais e remotas.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Capacitação da equipa</strong><p>Formação presencial e online em Power BI incluída no contrato.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>KPIs personalizados</strong><p>Indicadores desenhados especificamente para o seu sector e objectivos.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Relatórios automatizados</strong><p>Envio programado por e-mail e WhatsApp para a equipa de gestão.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Segurança granular</strong><p>Controlo de acesso detalhado por utilizador, departamento e relatório.</p></div></div>
+    </div>
+
+    <div id="v4" class="van-block reveal" data-d="2">
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Suporte local em Maputo</strong><p>Atendimento presencial em português, equipa baseada em Moçambique.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Personalização total</strong><p>Adaptamos os softwares aos processos e realidade do seu negócio.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Formação incluída</strong><p>Treinamos os utilizadores finais — presencialmente ou via plataforma online.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Actualizações contínuas</strong><p>Novas funcionalidades e melhorias incluídas no contrato de manutenção.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Implementação estruturada</strong><p>Diagnóstico, configuração, migração de dados e go-live acompanhado.</p></div></div>
+      <div class="van-item"><div class="van-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>ROI mensurável</strong><p>Redução de custos operacionais e aumento de produtividade comprovados.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ SOBRE ═══ -->
+<section class="sec" id="sobre" style="background:var(--white)">
+  <div class="wrap">
+    <div class="sobre-layout">
+      <div class="sobre-card reveal">
+        <div class="mvv">
+          <div class="mvv-label">Missão</div>
+          <div class="mvv-text">Fornecer software de gestão de alta qualidade e serviços de dados que capacitem organizações a tomar decisões estratégicas com eficiência e segurança.</div>
+        </div>
+        <div class="mvv">
+          <div class="mvv-label">Visão</div>
+          <div class="mvv-text">Ser a referência em desenvolvimento de sistemas de gestão e análise de dados em Moçambique e na região da África Austral.</div>
+        </div>
+        <div class="mvv">
+          <div class="mvv-label">Valores</div>
+          <div class="mvv-text">Excelência técnica · Transparência · Compromisso com resultados · Inovação · Atendimento humanizado</div>
+        </div>
+      </div>
+
+      <div class="sobre-right reveal" data-d="1">
+        <div class="sec-eyebrow"><div class="line"></div><span class="txt">quem somos</span></div>
+        <h2 class="sec-title">Tecnologia feita<br><em>para Moçambique</em></h2>
+        <p>A DevStack é uma empresa moçambicana de desenvolvimento de software e serviços em análise de dados, com sede em Maputo.</p>
+        <p>Fornecemos ferramentas digitais para que os nossos clientes possam gerir as suas operações com eficiência, segurança e inteligência — não concedemos crédito, não operamos água, não vendemos dados.</p>
+
+        <div class="numbers-row">
+          <div class="num-box"><div class="num-big"><small>+</small>30</div><div class="num-desc">softwares de microcrédito</div></div>
+          <div class="num-box"><div class="num-big"><small>+</small>15</div><div class="num-desc">sistemas de gestão de água</div></div>
+          <div class="num-box"><div class="num-big"><small>+</small>45</div><div class="num-desc">projetos de BI & dashboards</div></div>
+          <div class="num-box"><div class="num-big">2026</div><div class="num-desc">ano de fundação</div></div>
+        </div>
+
+        <div class="team-pair">
+          <div class="tm"><div class="tm-role">CEO & Co-fundador</div><div class="tm-name">Telis A. Magaia</div></div>
+          <div class="tm"><div class="tm-role">CTO & Co-fundador</div><div class="tm-name">José O. Chilengue</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ CONTACTO ═══ -->
+<section class="sec contato-bg" id="contato">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto 60px">
+      <div class="sec-eyebrow" style="justify-content:center"><div class="line"></div><span class="txt">fale connosco</span><div class="line"></div></div>
+      <h2 class="sec-title">Solicite uma<br><em>demonstração</em></h2>
+      <p class="sec-sub" style="margin:0 auto">Respondemos em até 24 horas úteis.</p>
+    </div>
+
+    <div class="contato-wrap">
+      <div class="contato-left reveal">
+        <div class="cinfo">
+          <div class="ci-dot"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.22 5.63 2 2 0 015.23 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11l-1.27 1.27a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div><div class="ci-lbl">Telefone / WhatsApp</div><div class="ci-val">87 616 4747</div></div>
+        </div>
+        <div class="cinfo">
+          <div class="ci-dot"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="ci-lbl">Email</div><div class="ci-val">chilengiejoseorlando@gmail.com</div></div>
+        </div>
+        <div class="cinfo">
+          <div class="ci-dot"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="ci-lbl">Morada</div><div class="ci-val"> — Maputo</div></div>
+        </div>
+
+        <div class="sol-pill-list">
+          <div class="pill-head">Soluções disponíveis</div>
+          <div class="pill-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Gestão de Microcrédito</div>
+          <div class="pill-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Gestão de Água / Saneamento</div>
+          <div class="pill-item"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Dashboards Power BI</div>
+        </div>
+      </div>
+
+      <div class="form-card reveal" data-d="1">
+        <h3>Envie uma mensagem</h3>
+        <div class="fg-row">
+          <div class="fg"><label>Nome completo</label><input type="text" placeholder="O seu nome" required></div>
+          <div class="fg"><label>Instituição / Empresa</label><input type="text" placeholder="Nome da organização"></div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label>Telefone / WhatsApp</label><input type="tel" placeholder="84 / 85 / 86 ..." required></div>
+          <div class="fg"><label>Email</label><input type="email" placeholder="opcional"></div>
+        </div>
+        <div class="fg">
+          <label>Interesse em</label>
+          <select>
+            <option value="" disabled selected>Seleccione uma solução</option>
+            <option>Software para gestão de microcrédito</option>
+            <option>Software para gestão de água</option>
+            <option>Análise de dados / Power BI</option>
+            <option>Mais de uma solução</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Mensagem</label>
+          <textarea rows="4" placeholder="Descreva brevemente a sua necessidade..."></textarea>
+        </div>
+        <button class="btn-send" type="button">
+          Enviar mensagem
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <div class="ft-brand-name">Dev<span>Stack</span></div>
+        <p class="ft-desc">Software de gestão e serviços de análise de dados para microcrédito, recursos hídricos e inteligência de negócio em Moçambique.</p>
+        <p class="ft-disc">Não concedemos crédito · Não operamos água · Não vendemos dados</p>
+      </div>
+      <div class="ft-col">
+        <h4>Soluções</h4>
+        <a href="#solucoes">Microcrédito</a>
+        <a href="#solucoes">Gestão de Água</a>
+        <a href="#solucoes">Power BI</a>
+      </div>
+      <div class="ft-col">
+        <h4>Empresa</h4>
+        <a href="#sobre">Quem somos</a>
+        <a href="#vantagens">Vantagens</a>
+        <a href="#contato">Contacto</a>
+      </div>
+      <div class="ft-col">
+        <h4>Contacto</h4>
+        <p>87 616 4747</p>
+        <p>geral@devstack.co.mz</p>
+        <p>Maputo, Moçambique</p>
+      </div>
+    </div>
+    <p class="ft-bottom">© 2025 DevStack · Software de gestão — não concedemos crédito nem operamos sistemas de água.</p>
+  </div>
+</footer>
+
+<script>
+/* ── cursor ── */
+const cur=document.getElementById('cursor');
+const dot=cur.querySelector('.dot');
+const ring=cur.querySelector('.ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+document.querySelectorAll('a,button,.tab,.sol-panel').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{dot.style.transform='scale(2.5)';ring.style.transform='scale(1.6)';ring.style.borderColor='var(--gold)'});
+  el.addEventListener('mouseleave',()=>{dot.style.transform='scale(1)';ring.style.transform='scale(1)';ring.style.borderColor='var(--jade)'});
+});
+
+/* ── nav scroll ── */
+const nb=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{nb.classList.toggle('scrolled',window.scrollY>60)});
+
+/* ── canvas dots (hero bg) ── */
+const canvas=document.getElementById('heroCanvas');
+const ctx=canvas.getContext('2d');
+let W,H,pts=[];
+function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight;initPts()}
+function initPts(){pts=[];const n=Math.floor(W*H/14000);for(let i=0;i<n;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.18,r:Math.random()*1.4+.4})}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  pts.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>W)p.vx*=-1;
+    if(p.y<0||p.y>H)p.vy*=-1;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle='rgba(168,205,191,.35)';ctx.fill();
+  });
+  pts.forEach((a,i)=>{
+    for(let j=i+1;j<pts.length;j++){
+      const b=pts[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+      if(d<90){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(168,205,191,${.12*(1-d/90)})`;ctx.lineWidth=.5;ctx.stroke()}
+    }
+  });
+  requestAnimationFrame(draw);
+}
+window.addEventListener('resize',resize);
+resize();draw();
+
+/* ── tabs ── */
+function setTab(btn,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.van-block').forEach(v=>v.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(id).classList.add('on');
+}
+
+/* ── scroll reveal ── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ── smooth scroll ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const t=document.querySelector(this.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+</script>
 </body>
 </html>
